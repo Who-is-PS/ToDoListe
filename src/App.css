@@ -4,13 +4,14 @@
 }
 
 .App{
-  background-color: blue;
+  background-color:white;
   height: 60vh;
   
   text-align: center;
-  
+  border: 3px solid black;
   margin:50px 200px;
   border-radius: 15px;
+  overflow: auto;
 }
 
 .form{
