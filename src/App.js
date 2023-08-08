@@ -1,25 +1,35 @@
-import logo from './logo.svg';
+
 import './App.css';
+import { useState } from 'react';
+import AddToDo from './components/AddToDo';
+import ToDoList from './components/ToDoList';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+  const [todos, setTodos] = useState([]);
+
+  const addToDo = (task) =>{
+    const newToDo = {id: Date.now(), task, completed: false};
+    setTodos([...todos, newToDo]);
+  };
+
+  const removeToDo = (id) =>{
+    setTodos(todos.filter(todo => todo.id !== id));
+  }
+
+  const toggleComplete = (id) =>{
+    const newToDos = todos.filter(todo => todo.id !== id);
+    setTodos(newToDos);
+  };
+
+  return(
+    <div className='App'>
+      <AddToDo addToDo ={addToDo} />
+      <ToDoList todos ={todos} removeToDo={removeToDo} toggleComplete={toggleComplete} />
+      
     </div>
-  );
+  )
 }
+
+
 
 export default App;
